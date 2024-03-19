@@ -1,8 +1,12 @@
 spring:
   application:
     name: Image-Service
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: true
   datasource:
-    url: jdbc:mysql://localhost:3306/socials_user
+    url: jdbc:mysql://localhost:3306/user_image
     username: root
     password: admin
 
