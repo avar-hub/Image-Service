@@ -9,4 +9,6 @@ import java.util.Optional;
 @Repository
 public interface UserImageRepo extends JpaRepository<UserImage,Integer> {
     Optional<UserImage> findByName(String name);
+
+    Optional<UserImage> findByEmail(String fileName);
 }

@@ -18,13 +18,13 @@ public class UserImageService {
     private final UserImageRepo repo;
 
     private final String FOLDER= "C:/Users/avarm/OneDrive/Documents/Socials/User_Images";
-    public String uploadImage(MultipartFile file) throws IOException {
+    public String uploadImage(MultipartFile file,String email) throws IOException {
 
         String filePath= FOLDER+file.getOriginalFilename();
 
         UserImage userImage= repo.save(UserImage.builder()
                 .name(file.getOriginalFilename()).type(file.getContentType())
-                .filepath(filePath).build());
+                .filepath(filePath).email(email).build());
 
         file.transferTo(new File(filePath));
         if(userImage!=null)
@@ -33,7 +33,7 @@ public class UserImageService {
     }
 
     public  byte[] downloadImage(String fileName) throws IOException {
-        Optional<UserImage> userImage= repo.findByName(fileName);
+        Optional<UserImage> userImage= repo.findByEmail(fileName);
         String filePath = userImage.get().getFilepath();
         byte[] image= Files.readAllBytes(new File(filePath).toPath());
         return image;

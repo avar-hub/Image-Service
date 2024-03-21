@@ -17,14 +17,15 @@ public class UserImageController {
     private final UserImageService userImageService;
 
     @PostMapping("/upload")
-    public ResponseEntity<String> uploadFile(@RequestParam("image")MultipartFile file) throws IOException {
-        String uploadFile = userImageService.uploadImage(file);
+    public ResponseEntity<String> uploadFile(@RequestParam("image")MultipartFile file,@RequestParam String email)
+            throws IOException {
+        String uploadFile = userImageService.uploadImage(file,email);
         return ResponseEntity.ok().body(uploadFile);
     }
 
     @GetMapping("/download")
-    public ResponseEntity<byte[]> downloadFile(@RequestParam String fileName) throws IOException {
-        byte[] image= userImageService.downloadImage(fileName);
+    public ResponseEntity<byte[]> downloadFile(@RequestParam String email) throws IOException {
+        byte[] image= userImageService.downloadImage(email);
         return ResponseEntity.ok()
                 .contentType(MediaType.valueOf("image/png")).body(image);
     }
