@@ -29,4 +29,9 @@ public class UserImageController {
         return ResponseEntity.ok()
                 .contentType(MediaType.valueOf("image/png")).body(image);
     }
+    @GetMapping("/getPathByEmail")
+    public String getImagePath(@RequestParam String email){
+        return userImageService.getImagePath(email);
+    }
+
 }

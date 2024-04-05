@@ -38,4 +38,12 @@ public class UserImageService {
         byte[] image= Files.readAllBytes(new File(filePath).toPath());
         return image;
     }
+
+    public String getImagePath(String email) {
+        Optional<UserImage> userImage= repo.findByEmail(email);
+        if(userImage.isPresent())
+            return userImage.get().getFilepath();
+        else
+            return " ";
+    }
 }
