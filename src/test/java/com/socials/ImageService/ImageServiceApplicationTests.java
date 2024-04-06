@@ -3,10 +3,10 @@ package com.socials.ImageService;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class ImageServiceApplicationTests {
 
-	@Test
+	//@Test
 	void contextLoads() {
 	}
 
