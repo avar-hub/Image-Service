@@ -6,7 +6,8 @@ spring:
       ddl-auto: update
       show-sql: true
   datasource:
-    url: jdbc:mysql://localhost:3306/user_image
+#    url: jdbc:mysql://localhost:3306/user_image
+#    Docker
 #    url: jdbc:mysql://mysql-db2:3306/user_image
     username: root
     password: admin
@@ -14,11 +15,26 @@ spring:
 server:
   port: 8085
 
-eureka:
-  client:
-    serviceUrl:
+#eureka:
+#  client:
+#    serviceUrl:
 #      defaultZone: http://naming-server-service:8761/eureka
-      defaultZone: http://localhost:8761/eureka
+##      defaultZone: http://localhost:8761/eureka
+#
+##  instance:
+##    hostname: localhost
 
+#Kubernetes
+
+eureka:
   instance:
-    hostname: localhost
+    preferIpAddress: true
+    hostname: eureka-0
+
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      #      podname-{replica-indes}.{service-name}.default.svc.cluster.local
+
+      defaultZone: http://eureka-0.eureka.default.svc.cluster.local:8761/eureka
